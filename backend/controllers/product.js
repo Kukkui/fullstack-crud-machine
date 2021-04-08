@@ -1,5 +1,29 @@
+// const nodemailer = require('nodemailer');
 // Import function from Product Model
 import { getProducts, getProductById, insertProduct, updateProductById, deleteProductById, updateProductWithPriceById } from "../models/productModel.js";
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+//Email Sent
+export const mailService = (req, res) => {
+
+    const nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'punyaweeposdev@gmail.com',
+            pass: 'Punyaweeposdev1234'
+        }
+    });
+
+    console.log('created');
+    transporter.sendMail({
+        from: 'punyaweeposdev@gmail.com',
+        to: 'kukkui2537@gmail.com',//ENTER ADMIN EMAIL HERE
+        subject: 'SCG STOCK WARNING!!!',
+        text: 'The vending machine item is mostly out of stock! please come back and add more items to the vending machine!'
+    });
+    res.send('EMAIL SENT')
+}
 
 // Get All Products
 export const showProducts = (req, res) => {
