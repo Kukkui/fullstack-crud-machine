@@ -2,7 +2,7 @@
 import express from "express";
 
 // import function from controller
-import { showProducts, showProductById, createProduct, updateProduct, deleteProduct } from "../controllers/product.js";
+import { showProducts, showProductById, createProduct, updateProduct, deleteProduct, updateProductWithPrice } from "../controllers/product.js";
 
 // init express router
 const router = express.Router();
@@ -18,6 +18,9 @@ router.post('/products', createProduct);
 
 // Update Product
 router.put('/products/:id', updateProduct);
+
+// Update Product By Id With New Price Params
+router.put('/products/:id/:unit', updateProductWithPrice);
 
 // Delete Product
 router.delete('/products/:id', deleteProduct);

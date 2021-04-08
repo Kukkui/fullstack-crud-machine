@@ -49,6 +49,19 @@ export const updateProductById = (data, id, result) => {
     });
 }
 
+
+// Update Product With Price to Database
+export const updateProductWithPriceById = (data, unit, id, result) => {
+    db.query("UPDATE product SET product_name = ?, product_unit = ? WHERE product_id = ?", [data.product_name, unit, id], (err, results) => {
+        if(err) {
+            console.log(err);
+            result(err, null);
+        } else {
+            result(null, results);
+        }
+    });
+}
+
 // Delete Product to Database
 export const deleteProductById = (id, result) => {
     db.query("DELETE FROM product WHERE product_id = ?", [id], (err, results) => {
